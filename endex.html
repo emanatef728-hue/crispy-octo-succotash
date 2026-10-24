@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السيرة الذاتية | إيمان عاطف</title>
+    <!-- تضمين خط تجوال -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- تضمين أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* الألوان الأساسية - الوضع الفاتح */
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #1e40af;
+            --gold-accent: #d4af37;
+            --text-dark: #1e293b;
+            --text-gray: #475569;
+            --bg-light: #f8fafc;
+            --bg-body: #cbd5e1;
+            --white: #ffffff;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --badge-bg: rgba(255, 255, 255, 0.1);
+        }
+
+        /* الوضع الليلي (Dark Mode) */
+        body.dark-mode {
+            --primary-blue: #0f172a;
+            --secondary-blue: #1e293b;
+            --gold-accent: #fbbf24;
+            --text-dark: #f8fafc;
+            --text-gray: #cbd5e1;
+            --bg-light: #1e293b;
+            --bg-body: #0f172a;
+            --white: #0f172a;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --badge-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.4s ease, color 0.4s ease; /* تأثير انتقال ناعم للألوان */
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 0;
+            overflow-x: hidden;
+        }
+
+        /* صفحة السيرة الذاتية A4 */
+        .cv-page {
+            background-color: var(--white);
+            width: 210mm;
+            min-height: 297mm;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out; /* حركة دخول الصفحة */
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* العمود الجانبي (الأيمن) */
+        .sidebar {
+            width: 35%;
+            background-color: var(--primary-blue);
+            color: #ffffff; /* أبيض ثابت في الشريط الجانبي */
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 8px;
+            background-color: var(--gold-accent);
+        }
+
+        /* الصورة الشخصية */
+        .profile-section {
+            text-align: center;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .profile-image-container {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 20px auto;
+            border-radius: 50%;
+            border: 4px solid var(--gold-accent);
+            padding: 4px;
+            background-color: var(--white);
+            transition: transform 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-image-container:hover {
+            transform: scale(1.05) rotate(3deg);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .profile-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        /* العناوين في الشريط الجانبي */
+        .sidebar h2 {
+            font-size: 16pt;
+            color: var(--gold-accent);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-item {
+            margin-bottom: 15px;
+        }
+
+        .sidebar-item h3 {
+            font-size: 12pt;
+            color: #ffffff;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .sidebar-item p {
+            font-size: 11pt;
+            color: #cbd5e1;
+        }
+
+        /* الروابط التفاعلية والتلميحات */
+        .interactive-link {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .interactive-link:hover {
+            color: var(--gold-accent);
+            transform: translateX(-5px);
+        }
+
+        .interactive-link i.copy-icon {
+            opacity: 0;
+            font-size: 10pt;
+            transition: opacity 0.3s ease;
+        }
+
+        .interactive-link:hover i.copy-icon {
+            opacity: 1;
+        }
+
+        /* الأيقونات الاجتماعية */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .social-links a {
+            color: #ffffff;
+            font-size: 16pt;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            color: var(--primary-blue);
+            background-color: var(--gold-accent);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* شريط المهارات التفاعلي */
+        .skill-container {
+            margin-bottom: 12px;
+        }
+        .skill-title {
+            font-size: 10pt;
+            color: #cbd5e1;
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .skill-bar-bg {
+            width: 100%;
+            height: 6px;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .skill-bar-fill {
+            height: 100%;
+            background-color: var(--gold-accent);
+            border-radius: 10px;
+            width: 0%; /* سيتم تفعيله بالجافاسكريبت */
+            transition: width 1.5s ease-in-out;
+        }
+
+        /* السمات المهنية (شارات) */
+        .traits-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .trait-badge {
+            background-color: var(--badge-bg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 10pt;
+            color: #ffffff;
+            transition: all 0.3s ease;
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+        .trait-badge::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            transition: all 0.5s ease;
+        }
+        .trait-badge:hover::after {
+            left: 200%;
+        }
+        .trait-badge:hover {
+            background-color: var(--gold-accent);
+            color: #1e3a8a; /* أزرق غامق دائما عند الهوفر */
+            transform: translateY(-2px);
+            border-color: var(--gold-accent);
+        }
+
+        /* العمود الرئيسي (الأيسر) */
+        .main-content {
+            width: 65%;
+            padding: 40px;
+            background-color: var(--bg-light);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            z-index: 1;
+        }
+
+        /* ترويسة الاسم */
+        .header-section {
+            border-bottom: 2px solid var(--gold-accent);
+            padding-bottom: 20px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .header-section h1 {
+            color: var(--primary-blue);
+            font-size: 28pt;
+            font-weight: 800;
+            margin-bottom: 8px;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .header-section h2 {
+            color: var(--gold-accent);
+            font-size: 16pt;
+            font-weight: 700;
+        }
+
+        /* العناوين في المحتوى الرئيسي */
+        .section-title {
+            color: var(--primary-blue);
+            font-size: 18pt;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+
+        .section-title i {
+            color: var(--gold-accent);
+            background: rgba(212, 175, 55, 0.1);
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 14pt;
+        }
+
+        .summary-text {
+            font-size: 12pt;
+            color: var(--text-gray);
+            text-align: justify;
+            line-height: 1.8;
+            padding: 15px;
+            background-color: var(--white);
+            border-radius: 8px;
+            border-right: 3px solid var(--gold-accent);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        /* القوائم في المحتوى الرئيسي */
+        .content-list {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .content-list > li {
+            position: relative;
+            padding-right: 30px;
+            margin-bottom: 12px;
+            font-size: 12pt;
+            color: var(--text-gray);
+            line-height: 1.7;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        
+        .content-list > li:hover {
+            transform: translateX(-8px);
+            color: var(--primary-blue);
+        }
+
+        .content-list > li::before {
+            content: '\f100'; /* أيقونة سهم FontAwesome */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--gold-accent);
+            position: absolute;
+            right: 0;
+            font-size: 11pt;
+            top: 3px;
+            transition: color 0.3s ease;
+        }
+
+        .content-list > li:hover::before {
+            color: var(--primary-blue);
+        }
+
+        /* بطاقة التحديات المهنية */
+        .challenges-card {
+            background-color: var(--white);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-right: 4px solid var(--gold-accent);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .challenges-card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            border-right-color: var(--primary-blue);
+        }
+        
+        .challenges-card h3 {
+            color: var(--primary-blue);
+            font-size: 14pt;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* رسالة الإشعار التفاعلية (Toast) */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: var(--primary-blue);
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 12pt;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .toast-container.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* الأزرار العائمة (Floating Action Buttons) */
+        .fab-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 100;
+        }
+        .fab-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: 2px solid var(--gold-accent);
+            font-size: 16pt;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        .fab-btn:hover {
+            transform: scale(1.1) rotate(15deg);
+            background-color: var(--gold-accent);
+            color: var(--primary-blue);
+        }
+
+        /* إعدادات الطباعة */
+        @media print {
+            body {
+                background-color: #ffffff !important;
+                padding: 0;
+                margin: 0;
+            }
+            body.dark-mode {
+                /* إجبار الطباعة باللون الفاتح حتى لو كان الوضع الليلي مفعل */
+                --primary-blue: #1e3a8a;
+                --text-dark: #1e293b;
+                --bg-light: #f8fafc;
+                --white: #ffffff;
+            }
+            .cv-page {
+                box-shadow: none;
+                width: 100%;
+                min-height: auto;
+                animation: none;
+            }
+            .fab-container, .toast-container {
+                display: none !important;
+            }
+            .skill-bar-fill {
+                width: 100% !important; /* ملء الأشرطة عند الطباعة */
+            }
+            @page {
+                size: A4;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- رسالة النسخ -->
+    <div id="toastMessage" class="toast-container">
+        <i class="fas fa-check-circle" style="color: var(--gold-accent);"></i>
+        <span id="toastText">تم النسخ بنجاح!</span>
+    </div>
+
+    <!-- الأزرار العائمة التفاعلية -->
+    <div class="fab-container">
+        <button class="fab-btn" onclick="toggleTheme()" title="تغيير المظهر (ليلي/نهاري)">
+            <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+        <button class="fab-btn" onclick="window.print()" title="طباعة السيرة الذاتية (PDF)">
+            <i class="fas fa-print"></i>
+        </button>
+    </div>
+
+    <div class="cv-page">
+        <!-- الشريط الجانبي (الأيمن) -->
+        <aside class="sidebar">
+            <div class="profile-section">
+                <div class="profile-image-container">
+                    <img src="image_7dd97a.jpg" alt="إيمان عاطف راغب">
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h2><i class="fas fa-address-card"></i> بيانات التواصل</h2>
+                <div class="sidebar-item">
+                    <h3><i class="fas fa-map-marker-alt" style="color: var(--gold-accent); margin-left: 5px;"></i> الإقامة</h3>
+                    <p>الدمام - المملكة العربية السعودية</p>
+                </div>
+                <div class="sidebar-item">
+                    <h3><i class="fas fa-phone-alt" style="color: var(--gold-accent); margin-left: 5px;"></i> الهاتف / واتساب</h3>
+                    <!-- خاصية النسخ التفاعلي -->
+                    <a class="interactive-link" onclick="copyText('+966530871087', 'تم نسخ رقم الهاتف!')" title="انقر لنسخ الرقم">
+                        <span dir="ltr">+966 53 087 1087</span>
+                        <i class="fas fa-copy copy-icon"></i>
+                    </a>
+                </div>
+                <div class="sidebar-item">
+                    <h3><i class="fas fa-envelope" style="color: var(--gold-accent); margin-left: 5px;"></i> البريد الإلكتروني</h3>
+                    <!-- خاصية النسخ التفاعلي -->
+                    <a class="interactive-link" onclick="copyText('emanatef728@gmail.com', 'تم نسخ البريد الإلكتروني!')" title="انقر لنسخ الإيميل">
+                        emanatef728@gmail.com
+                        <i class="fas fa-copy copy-icon"></i>
+                    </a>
+                </div>
+                <div class="sidebar-item">
+                    <h3><i class="fas fa-share-alt" style="color: var(--gold-accent); margin-left: 5px;"></i> تواصل معي</h3>
+                    <div class="social-links">
+                        <a href="https://wa.me/966530871087" target="_blank" title="مراسلة عبر واتساب"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" title="ملف LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="mailto:emanatef728@gmail.com" title="إرسال بريد إلكتروني"><i class="fas fa-paper-plane"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h2><i class="fas fa-chart-pie"></i> المهارات التربوية</h2>
+                <!-- شريط المهارات التفاعلي -->
+                <div class="sidebar-item">
+                    <div class="skill-container">
+                        <div class="skill-title"><span>إدارة الصف والتعلم النشط</span> <span>95%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="95%"></div></div>
+                    </div>
+                    <div class="skill-container">
+                        <div class="skill-title"><span>إعداد الخطط والتقييمات</span> <span>90%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="90%"></div></div>
+                    </div>
+                    <div class="skill-container">
+                        <div class="skill-title"><span>التعامل مع الفروق الفردية</span> <span>95%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="95%"></div></div>
+                    </div>
+                    <div class="skill-container">
+                        <div class="skill-title"><span>استخدام التقنية والذكاء الاصطناعي</span> <span>85%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85%"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h2><i class="fas fa-star"></i> السمات المهنية</h2>
+                <div class="traits-container">
+                    <span class="trait-badge"><i class="fas fa-check"></i> الالتزام المهني</span>
+                    <span class="trait-badge"><i class="fas fa-heart"></i> الصبر والمرونة</span>
+                    <span class="trait-badge"><i class="fas fa-lightbulb"></i> الإبداع في الشرح</span>
+                    <span class="trait-badge"><i class="fas fa-users"></i> العمل بروح الفريق</span>
+                    <span class="trait-badge"><i class="fas fa-comments"></i> التواصل الفعال</span>
+                    <span class="trait-badge"><i class="fas fa-sync-alt"></i> التطوير المستمر</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- المحتوى الرئيسي (الأيسر) -->
+        <main class="main-content">
+            <header class="header-section">
+                <h1>إيمان عاطف راغب</h1>
+                <h2>معلمة لغة عربية | خبرة تربوية 15 عامًا</h2>
+                <h3 style="color: var(--text-gray); font-size: 13pt; margin-top: 10px; font-weight: 500; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-school" style="color: var(--primary-blue); padding: 6px; background: rgba(30, 58, 138, 0.1); border-radius: 50%;"></i> 
+                    أكاديمية الإعجاب العلمي العالمية (المسار المصري)
+                </h3>
+            </header>
+
+            <section>
+                <h2 class="section-title"><i class="fas fa-user-tie"></i> الملخص المهني</h2>
+                <p class="summary-text">
+                    معلمة لغة عربية شغوفة تتمتع بخبرة مهنية تمتد إلى 15 عامًا في التعليم داخل مصر والمملكة العربية السعودية (الرياض والدمام). متخصصة في تدريس اللغة العربية بأساليب تربوية تفاعلية حديثة، وتنمية مهارات القراءة والكتابة والتعبير. أمتلك قدرة عالية على إعداد خطط تدريس وتقييمات تراعي الفروق الفردية، وأهتم بتهيئة بيئة صفية محفزة وآمنة، وتوظيف الوسائط الرقمية وأدوات الذكاء الاصطناعي لتعزيز مشاركة الطلاب وتحسين مخرجات التعلم.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="section-title"><i class="fas fa-briefcase"></i> الخبرات المهنية والمسؤوليات</h2>
+                <ul class="content-list">
+                    <li>تدريس اللغة العربية للمرحلة الابتدائية (الصفان الثاني والخامس) وفق المنهج المصري.</li>
+                    <li>إعداد التحضير اليومي وتصميم الأهداف التعليمية وخطط الحصص والأنشطة الصفية واللاصفية.</li>
+                    <li>تنمية مهارات القراءة الجهرية، الفهم القرائي، الإملاء، الخط، والتعبير الكتابي.</li>
+                    <li>تصميم أوراق عمل تفاعلية، واختبارات قصيرة، وتقييمات دورية مناسبة لمختلف مستويات الطلاب.</li>
+                    <li>متابعة دقيقة لتقدم الطلاب وتقديم خطط علاجية للمتعثرين وأنشطة إثرائية للموهوبين.</li>
+                    <li>تنظيم مسابقات لغوية وأنشطة تحفيزية، والمشاركة الفعالة في الإذاعة المدرسية والفعاليات.</li>
+                    <li>التواصل المستمر والبنّاء مع أولياء الأمور وتقديم ملاحظات تربوية وتقارير متابعة واضحة.</li>
+                </ul>
+            </section>
+
+            <section class="challenges-card">
+                <h3><i class="fas fa-puzzle-piece" style="color: var(--gold-accent);"></i> التحديات المهنية والحلول المبتكرة</h3>
+                <ul class="content-list" style="margin-top: 10px;">
+                    <li><strong>تفاوت مستويات القراءة:</strong> تطبيق أنشطة متدرجة، وتكوين مجموعات دعم، وخطط علاجية فردية.</li>
+                    <li><strong>ضعف الدافعية والمشاركة:</strong> توظيف الألعاب التعليمية (Gamification) والتعلم النشط والتعزيز الإيجابي.</li>
+                    <li><strong>كثافة المحتوى:</strong> تقسيم الأهداف إلى خطوات قابلة للقياس وتنويع أساليب التقويم المستمر.</li>
+                    <li><strong>تنوع البيئات التعليمية:</strong> المرونة العالية في تكييف أساليب التدريس مع متطلبات المدرسة والمنهج.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="section-title"><i class="fas fa-graduation-cap"></i> المؤهلات العلمية والأدوات</h2>
+                <ul class="content-list">
+                    <li><strong>المؤهل الأكاديمي:</strong> ليسانس دراسات إسلامية وعربية + دبلوم عام في التربية.</li>
+                    <li><strong>المنصات التعليمية:</strong> إجادة استخدام نظام Classera لإدارة الواجبات والتقييمات.</li>
+                    <li><strong>أدوات التصميم والـ AI:</strong> استخدام Microsoft Office و Gamma و NotebookLM لتصميم المحتوى.</li>
+                    <li><strong>المبادرات:</strong> إعداد مسابقات لغوية مثل مبادرة «سفير العربية» لتكريم المتميزين.</li>
+                </ul>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- سكريبت التفاعلية -->
+    <script>
+        // 1. تفعيل أشرطة المهارات عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const skillBars = document.querySelectorAll('.skill-bar-fill');
+                skillBars.forEach(bar => {
+                    bar.style.width = bar.getAttribute('data-width');
+                });
+            }, 500); // تأخير بسيط لجمالية العرض
+        });
+
+        // 2. دالة لنسخ النصوص (رقم الهاتف أو الإيميل)
+        function copyText(textToCopy, successMessage) {
+            // إنشاء عنصر مخفي لنسخ النص
+            const tempInput = document.createElement("input");
+            tempInput.value = textToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            
+            // إظهار رسالة الـ Toast
+            showToast(successMessage);
+        }
+
+        // 3. دالة إظهار رسالة النجاح
+        function showToast(message) {
+            const toast = document.getElementById('toastMessage');
+            const toastText = document.getElementById('toastText');
+            toastText.textContent = message;
+            
+            toast.classList.add('show');
+            
+            // إخفاء الرسالة بعد 3 ثواني
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // 4. دالة التبديل بين الوضع الليلي والنهاري
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('themeIcon');
+            
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
+    </script>
+</body>
+</html>
